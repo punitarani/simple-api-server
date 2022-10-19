@@ -24,11 +24,11 @@ func main() {
 }
 
 // Simple handler function
-func handler(w http.ResponseWriter, _ *http.Request) {
+func handler(w http.ResponseWriter, r *http.Request) {
 	responseLength, err := w.Write([]byte("Simple API Server"))
 	if err != nil {
 		return
 	}
 
-	fmt.Printf("Response status: %d. Response length: %d.\n", http.StatusOK, responseLength)
+	fmt.Printf("Endpoint: %s, Response status: %d. Response length: %d.\n", r.URL.Path, http.StatusOK, responseLength)
 }
