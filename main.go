@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 )
 
@@ -9,26 +10,22 @@ const port = 8080
 
 func main() {
 	fmt.Println("Simple API Server")
-	fmt.Printf("Running on http://localhost:%d.\n", port)
+	log.Printf("Starting server on http://localhost:%d.\n", port)
 
 	// Register handler function to "/" endpoint
 	http.HandleFunc("/", handler)
 
 	// Start server on port 8080
-	err := http.ListenAndServe(fmt.Sprintf(":%d", port), nil)
-	if err != nil {
-		fmt.Printf("Failed to start server on http://localhost:%d.\n", port)
-		fmt.Printf("Error: %s\n", err)
-		return
-	}
+	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", port), nil))
 }
 
 // Simple handler function
 func handler(w http.ResponseWriter, r *http.Request) {
 	responseLength, err := w.Write([]byte("Simple API Server"))
 	if err != nil {
+		log.Printf("Error writing response: %s", err)
 		return
 	}
 
-	fmt.Printf("Endpoint: %s, Response status: %d. Response length: %d.\n", r.URL.Path, http.StatusOK, responseLength)
+	log.Printf("Endpoint: %s, Response status: %d. Response length: %d.\n", r.URL.Path, http.StatusOK, responseLength)
 }
