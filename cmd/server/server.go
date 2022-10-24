@@ -6,8 +6,8 @@ import (
 	"net/http"
 )
 
-// Main runs the server
-func Main(port int) {
+// Run runs the server
+func Run(port int) {
 	log.Printf("Starting server on http://localhost:%d.\n", port)
 
 	// Register all routes handlers to the server

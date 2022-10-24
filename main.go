@@ -9,5 +9,5 @@ const port = 8080
 
 func main() {
 	fmt.Println("Simple API Server")
-	server.Main(port)
+	server.Run(port)
 }
