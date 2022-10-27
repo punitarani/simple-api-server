@@ -9,4 +9,5 @@ import (
 func Handle() {
 	http.HandleFunc("/", routes.HomeHandler)
 	http.HandleFunc("/time/", routes.TimeHandler)
+	http.HandleFunc("/weather/", routes.WeatherHandler)
 }
